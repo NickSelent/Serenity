@@ -25,6 +25,7 @@
         rectBorder = "green"; //"#000000";
         nameColor = "#000000";
         lineColor = "#000000";
+
         var svg = d3.select("body")
             .append("svg")
             .attr("width", "100%")
@@ -38,42 +39,50 @@
             document.getElementById("content").innerHTML = "(" + Math.round(coordinates[0]) + "," + Math.round(coordinates[1]) + ")";  
 }
         d3.select('svg').on('mousemove', findTheMouse);
-        //x is Horizontal placement
+        //x is Horizontal placement of top left corner
         //y is Vertical placement
-        var peopleData = [
+        var male = [
               { x: 100, y: 100, G: "M", name: "Varevesena Zhas", more : "207th Emperor of the Elflands"  }
-            , { x: 300, y: 100, G: "F", name: "ruof" }
-            , { x: 600, y: 100, G: "F", name: "owt2" }
             , { x: 200, y: 250, G: "M", name: "Varenechibel IV", more : "208th Emperor of the Elflands" }
-            , { x: 400, y: 250, G: "F", name: "Arbelan Drazharan" }
-            , { x: 600, y: 250, G: "F", name: "Leshan Drazharan" }
-            , { x: 800, y: 250, G: "F", name: "Pazhiro Drazharan" }
-            , { x: 1000, y: 250, G: "F", name: "Chenelo Drazharan" }
-            , { x: 1200, y: 250, G: "F", name: "Csoru Drazharan" }
             , { x: 500, y: 400, G: "M", name: "Nemolis Drazhar" }
-            , { x: 650, y: 400, G: "F", name: "Nemrian Imaran" }
             , { x: 800, y: 400, G: "M", name: "Nazhira Drazhar" }
             , { x: 950, y: 400, G: "M", name: "Ciris Drazhar" }
-            , { x: 1150, y: 400, G: "F", name: "Vedero Drazhin" }
             , { x: 1300, y: 400, G: "M", name: "Maia Drazhin" }];
+
+        //x,y of center
+        var female = [
+              { x: 350, y: 150, G: "F", name: "???" }            
+            , { x: 400, y: 300, G: "F", name: "Arbelan Drazharan" }
+            , { x: 600, y: 300, G: "F", name: "Leshan Drazharan" }
+            , { x: 800, y: 300, G: "F", name: "Pazhiro Drazharan" }
+            , { x: 1000, y: 300, G: "F", name: "Chenelo Drazharan" }
+            , { x: 1200, y: 300, G: "F", name: "Csoru Drazharan" }
+            , { x: 650, y: 450, G: "F", name: "Nemrian Imaran" }
+            , { x: 1150, y: 450, G: "F", name: "Vedero Drazhin" }
+            , { x: 600, y: 650, G: "F", name: "?" }];
 
         //Horizontal Lines
         var horizontals = [
-              { x1: 200, y1: 150, x2: 300, y2: 150, r: 10, f: lineColor, union: "To ruof" }
-            , { x1: 550, y1: 300, x2: 600, y2: 300, r: 10, f: lineColor, union: "To Leshan" }
-            , { x1: 550, y1: 375, x2: 700, y2: 375, r: 10, f: lineColor, union: "Leshan Children" }];
+              { x1: 150, y1: 225, x2: 350, y2: 225, f: lineColor, union: "Varevesena Spouse" }
+            , { x1: 550, y1: 550, x2: 600, y2: 550, f: lineColor, union: "Nemolis Spouse" }
+            , { x1: 250, y1: 375, x2: 1200, y2: 375, f: lineColor, union: "Varenechibel Spouses" }];
 
         //Vertical Lines
         var verticals = [
-              { x1: 250, y1: 150, x2: 250, y2: 250, r: 10, f: lineColor, name: "Varenchibel IV Origin" }
-            , { x1: 700, y1: 375, x2: 700, y2: 400, r: 10, f: lineColor, name: "Nemrian Origin"}
-            , { x1: 850, y1: 375, x2: 850, y2: 400, r: 10, f: lineColor, name: "Nazhira Origin" }
-            , { x1: 550, y1: 300, x2: 550, y2: 400, r: 10, f: lineColor, name: "Nemolis Origin" }];
+              { x1: 150, y1: 200, x2: 150, y2: 225, f: lineColor, name: "Connect Varevesena Spouses" }
+            , { x1: 350, y1: 200, x2: 350, y2: 225, f: lineColor, name: "Connect ??? Spouses"}
+            , { x1: 250, y1: 225, x2: 250, y2: 250, f: lineColor, name: "Varenchibel IV Origin" }
+            , { x1: 250, y1: 350, x2: 250, y2: 375, f: lineColor, name: "Connect Varenchibel IV Spouses"} 
+            , { x1: 400, y1: 350, x2: 400, y2: 375, f: lineColor, name: "Connect Arbelan"}
+            , { x1: 600, y1: 350, x2: 600, y2: 375, f: lineColor, name: "Connect Leshan"}
+            , { x1: 800, y1: 350, x2: 800, y2: 375, f: lineColor, name: "Connect Pazhiro"}
+            , { x1: 1000, y1: 350, x2: 1000, y2: 375, f: lineColor, name: "Connect Chenelo"}
+            , { x1: 1200, y1: 350, x2: 1200, y2: 375, f: lineColor, name: "Connect Csoru"}];
 
         //svg.selectAll("rect").remove(); //remove can be used if you want to redraw these after an interaction...
         //Create Rectangles for each person
         svg.selectAll("rect")
-            .data(peopleData)
+            .data(male)
             .enter().append("rect")
             .attr("x", function (d) { return d.x; })
             .attr("y", function (d) { return d.y; })
@@ -83,12 +92,24 @@
             .style("fill-opacity", 0.5)
             .style("fill", function (d) { return d.G === "M" ? maleColor : femaleColor; }); //"none"
 
+        svg.selectAll("circle")
+            .data(female)
+            .enter().append("circle")
+            .attr("cx", function (d) { return d.x; }) 
+            .attr("cy", function (d) { return d.y; }) 
+            .attr("r", 50)
+            .attr("stroke", rectBorder)
+            .style("fill-opacity", 0.5)
+            .style("fill", function (d) { return d.G === "M" ? maleColor : femaleColor; }); //"none"
+
+        
+        var peopleData = male.concat(female);        
         //Add Names
         svg.selectAll("text")
             .data(peopleData)
             .enter().append("text")
-            .attr("x", function (d) { return d.x + 10; })
-            .attr("y", function (d) { return d.y + 20; })
+            .attr("x", function (d) { return d.G === "M" ? d.x + 10 : d.x - 40; })
+            .attr("y", function (d) { return d.G === "M" ? d.y + 50 : d.y; })
             .text(function (d) { return d.name })
             .attr("font-family", "sans-serif")
             .attr("font-size", "10px")
