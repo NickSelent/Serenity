@@ -46,10 +46,11 @@
         var male = [
               { x: 100, y: 100, G: "M", B: "B", name: "Varevesena Zhas", more : "207th Emperor of the Elflands"  }
             , { x: 200, y: 250, G: "M", B: "B", name: "Varenechibel IV", more : "208th Emperor of the Elflands" }
-            , { x: 400, y: 450, G: "M", B: "B", name: "Nemolis Drazhar" }
-            , { x: 800, y: 450, G: "M", B: "B", name: "Nazhira Drazhar" }
-            , { x: 950, y: 450, G: "M", B: "B", name: "Ciris Drazhar" }
-            , { x: 1300, y: 450, G: "M", B: "B", name: "Maia Drazhin" }];
+            , { x: 200, y: 450, G: "M", B: "B", name: "Nemolis Drazhar" }
+            , { x: 600, y: 450, G: "M", B: "B", name: "Nazhira Drazhar" }
+            , { x: 725, y: 450, G: "M", B: "B", name: "Ciris Drazhar" }
+            , { x: 975, y: 450, G: "M", B: "B", name: "Maia Drazhar" }
+            , { x: 200, y: 650, G: "M", B: "B", name: "Idra Drazhar" }];
 
         //x,y of center
         var female = [
@@ -59,16 +60,19 @@
             , { x: 800, y: 300, G: "F", B: "M", name: "Pazhiro Drazharan" }
             , { x: 1000, y: 300, G: "F", B: "M", name: "Chenelo Drazharan" }
             , { x: 1200, y: 300, G: "F", B: "M", name: "Csoru Drazharan" }
-            , { x: 575, y: 500, G: "F", B: "M", name: "Shevean Drazharan" }
-            , { x: 700, y: 500, G: "F", B: "B", name: "Nemrian Imaran" }
-            , { x: 1150, y: 500, G: "F", B: "B", name: "Vedero Drazhin" }
-            , { x: 600, y: 650, G: "F", B: "B", name: "?" }];
+            , { x: 375, y: 500, G: "F", B: "M", name: "Shevean Drazharan" }
+            , { x: 500, y: 500, G: "F", B: "B", name: "Nemrian Imaran" }
+            , { x: 900, y: 500, G: "F", B: "B", name: "Vedero Drazhin" }
+            , { x: 375, y: 700, G: "F", B: "B", name: "Mirean Drazhin" }
+            , { x: 500, y: 700, G: "F", B: "B", name: "Ino Drazhin" }];
 
         //Horizontal Lines
         var horizontals = [
               { x1: 150, y1: 225, x2: 350, y2: 225, f: lineColor, union: "Varevesena Spouse" }
             , { x1: 250, y1: 375, x2: 1200, y2: 375, f: lineColor, union: "Varenechibel Spouses" }
-            , { x1: 450, y1: 400, x2: 700, y2: 400, f: lineColor, union: "Leshan Children" }];
+            , { x1: 250, y1: 400, x2: 500, y2: 400, f: lineColor, union: "Leshan Children" }
+            , { x1: 650, y1: 400, x2: 900, y2: 400, f: lineColor, union: "Pazhiro Children" }
+            , { x1: 250, y1: 575, x2: 500, y2: 575, f: lineColor, union: "Shevean Children" }];
 
         //Vertical Lines
         var verticals = [
@@ -81,9 +85,16 @@
             , { x1: 800, y1: 350, x2: 800, y2: 375, f: lineColor, name: "Connect Pazhiro"}
             , { x1: 1000, y1: 350, x2: 1000, y2: 375, f: lineColor, name: "Connect Chenelo"}
             , { x1: 1200, y1: 350, x2: 1200, y2: 375, f: lineColor, name: "Connect Csoru"}
-            , { x1: 550, y1: 375, x2: 550, y2: 400, f: lineColor, name: "Connect Leshan Children"}
-            , { x1: 450, y1: 400, x2: 450, y2: 450, f: lineColor, name: "Connect Nemolis"}
-            , { x1: 700, y1: 400, x2: 700, y2: 450, f: lineColor, name: "Connect Nemrian"}];
+            , { x1: 450, y1: 375, x2: 450, y2: 400, f: lineColor, name: "Connect Leshan Children"}
+            , { x1: 250, y1: 400, x2: 250, y2: 450, f: lineColor, name: "Connect Nemolis"}
+            , { x1: 500, y1: 400, x2: 500, y2: 450, f: lineColor, name: "Connect Nemrian"}
+            , { x1: 725, y1: 375, x2: 725, y2: 400, f: lineColor, name: "Connect Pazhiro Children"}
+            , { x1: 650, y1: 400, x2: 650, y2: 450, f: lineColor, name: "Connect Nazhira"}
+            , { x1: 775, y1: 400, x2: 775, y2: 450, f: lineColor, name: "Connect Ciris"}
+            , { x1: 900, y1: 400, x2: 900, y2: 450, f: lineColor, name: "Connect Vedero"}
+            , { x1: 985, y1: 375, x2: 985, y2: 450, f: lineColor, name: "Connect Maia"}
+            , { x1: 250, y1: 550, x2: 250, y2: 575, f: lineColor, name: "Connect Nemolis Spouse"}
+            , { x1: 375, y1: 550, x2: 375, y2: 575, f: lineColor, name: "Connect Shevean Spouse"} ];
 
         //svg.selectAll("rect").remove(); //remove can be used if you want to redraw these after an interaction...
         //Create Rectangles for each person
@@ -105,6 +116,7 @@
             .attr("cy", function (d) { return d.y; }) 
             .attr("r", 50)
             .attr("stroke", function (d) { return d.B === "B" ? bloodColor : marriageColor; })
+            .attr("stroke-width", 2)
             .style("fill-opacity", 0.5)
             .style("fill", function (d) { return d.G === "M" ? maleColor : femaleColor; }); 
 
