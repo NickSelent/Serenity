@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>svgtree</title>
+    <meta charset="utf-8">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body><div id="content"></div>
+    <script>
+        maleColor = "#B8DEE6";
+        femaleColor = "RED";
+        rectWidth = 26;
+        rectHeight = 26;
+        rectBorder = "green"; //"#000000";
+        bloodColor = "#000000";//"none"
+        marriageColor = "green";
+        nameColor = "#000000";
+        lineColor = "#000000";
+
+        var svg = d3.select("body")
+            .append("svg")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .call(d3.zoom().on("zoom", function () { svg.attr("transform", d3.event.transform) }))
+            .append("g");
+
+        // see X,Y as you move the mouse.
+        function findTheMouse() {
+            var coordinates = d3.mouse(this); 
+            document.getElementById("content").innerHTML = "(" + Math.round(coordinates[0]) + "," + Math.round(coordinates[1]) + ")";  
+}
+        d3.select('svg').on('mousemove', findTheMouse);
+        //x is Horizontal placement of top left corner
+        //y is Vertical placement
+        var male = [
+              { x: 138, y: 175, G: "M", B: "B", name: "Varevesena Zhas", more : "207th Emperor of the Elflands"  }
+            , { x: 238, y: 325, G: "M", B: "B", name: "Varenechibel IV", more : "208th Emperor of the Elflands" }
+            , { x: 200, y: 450, G: "M", B: "B", name: "Nemolis Drazhar" }
+            , { x: 600, y: 450, G: "M", B: "B", name: "Nazhira Drazhar" }
+            , { x: 725, y: 450, G: "M", B: "B", name: "Ciris Drazhar" }
+            , { x: 975, y: 450, G: "M", B: "B", name: "Maia Drazhar" }
+            , { x: 200, y: 650, G: "M", B: "B", name: "Idra Drazhar" }];
+
+        //x,y of center
+        var female = [
+              { x: 350, y: 175, G: "F", B: "M", name: "???" }            
+            , { x: 400, y: 325, G: "F", B: "M", name: "Arbelan Drazharan" }
+            , { x: 600, y: 325, G: "F", B: "M", name: "Leshan Drazharan" }
+            , { x: 800, y: 325, G: "F", B: "M", name: "Pazhiro Drazharan" }
+            , { x: 1000, y: 300, G: "F", B: "M", name: "Chenelo Drazharan" }
+            , { x: 1200, y: 300, G: "F", B: "M", name: "Csoru Drazharan" }
+            , { x: 375, y: 500, G: "F", B: "M", name: "Shevean Drazharan" }
+            , { x: 500, y: 500, G: "F", B: "B", name: "Nemrian Imaran" }
+            , { x: 900, y: 500, G: "F", B: "B", name: "Vedero Drazhin" }
+            , { x: 375, y: 700, G: "F", B: "B", name: "Mirean Drazhin" }
+            , { x: 500, y: 700, G: "F", B: "B", name: "Ino Drazhin" }];
+
+        //Horizontal Lines
+        var horizontals = [
+              { x1: 150, y1: 225, x2: 350, y2: 225, f: lineColor, union: "Varevesena Spouse" }
+            , { x1: 250, y1: 375, x2: 1200, y2: 375, f: lineColor, union: "Varenechibel Spouses" }
+            , { x1: 250, y1: 400, x2: 500, y2: 400, f: lineColor, union: "Leshan Children" }
+            , { x1: 650, y1: 400, x2: 900, y2: 400, f: lineColor, union: "Pazhiro Children" }
+            , { x1: 250, y1: 575, x2: 375, y2: 575, f: lineColor, union: "Nemolis Spouse" }
+            , { x1: 250, y1: 600, x2: 500, y2: 600, f: lineColor, union: "Shevean Children" }];
+
+        //Vertical Lines
+        var verticals = [
+              { x1: 150, y1: 200, x2: 150, y2: 225, f: lineColor, name: "Connect Varevesena Spouses" }
+            , { x1: 350, y1: 200, x2: 350, y2: 225, f: lineColor, name: "Connect ??? Spouses"}
+            , { x1: 250, y1: 225, x2: 250, y2: 325, f: lineColor, name: "Varenchibel IV Origin" }
+            , { x1: 250, y1: 350, x2: 250, y2: 375, f: lineColor, name: "Connect Varenchibel IV Spouses"} 
+            , { x1: 400, y1: 350, x2: 400, y2: 375, f: lineColor, name: "Connect Arbelan"}
+            , { x1: 600, y1: 350, x2: 600, y2: 375, f: lineColor, name: "Connect Leshan"}
+            , { x1: 800, y1: 350, x2: 800, y2: 375, f: lineColor, name: "Connect Pazhiro"}
+            , { x1: 1000, y1: 350, x2: 1000, y2: 375, f: lineColor, name: "Connect Chenelo"}
+            , { x1: 1200, y1: 350, x2: 1200, y2: 375, f: lineColor, name: "Connect Csoru"}
+            , { x1: 450, y1: 375, x2: 450, y2: 400, f: lineColor, name: "Connect Leshan Children"}
+            , { x1: 250, y1: 400, x2: 250, y2: 450, f: lineColor, name: "Connect Nemolis"}
+            , { x1: 500, y1: 400, x2: 500, y2: 450, f: lineColor, name: "Connect Nemrian"}
+            , { x1: 725, y1: 375, x2: 725, y2: 400, f: lineColor, name: "Connect Pazhiro Children"}
+            , { x1: 650, y1: 400, x2: 650, y2: 450, f: lineColor, name: "Connect Nazhira"}
+            , { x1: 775, y1: 400, x2: 775, y2: 450, f: lineColor, name: "Connect Ciris"}
+            , { x1: 900, y1: 400, x2: 900, y2: 450, f: lineColor, name: "Connect Vedero"}
+            , { x1: 985, y1: 375, x2: 985, y2: 450, f: lineColor, name: "Connect Maia"}
+            , { x1: 250, y1: 550, x2: 250, y2: 575, f: lineColor, name: "Connect Nemolis Spouse"}
+            , { x1: 375, y1: 550, x2: 375, y2: 575, f: lineColor, name: "Connect Shevean Spouse"}
+            , { x1: 350, y1: 575, x2: 350, y2: 600, f: lineColor, name: "Connect Shevean Children"}
+            , { x1: 250, y1: 600, x2: 250, y2: 650, f: lineColor, name: "Connect Idra"}
+            , { x1: 375, y1: 600, x2: 375, y2: 650, f: lineColor, name: "Connect Mirean"}
+            , { x1: 500, y1: 600, x2: 500, y2: 650, f: lineColor, name: "Connect Ino"} ];
+
+        //svg.selectAll("rect").remove(); //remove can be used if you want to redraw these after an interaction...
+        //Create Rectangles for each person
+        svg.selectAll("rect")
+            .data(male)
+            .enter().append("rect")
+            .attr("x", function (d) { return d.x; })
+            .attr("y", function (d) { return d.y; })
+            .attr("width", rectWidth)
+            .attr("height", rectHeight)
+            .attr("stroke", function (d) { return d.B === "B" ? bloodColor : marriageColor; })
+            .style("fill-opacity", 0.5)
+            .style("fill", function (d) { return d.G === "M" ? maleColor : femaleColor; }); 
+
+        svg.selectAll("circle")
+            .data(female)
+            .enter().append("circle")
+            .attr("cx", function (d) { return d.x; }) 
+            .attr("cy", function (d) { return d.y; }) 
+            .attr("r", 13)
+            .attr("stroke", function (d) { return d.B === "B" ? bloodColor : marriageColor; })
+            .attr("stroke-width", 2)
+            .style("fill-opacity", 0.5)
+            .style("fill", function (d) { return d.G === "M" ? maleColor : femaleColor; }); 
+
+        
+        var peopleData = male.concat(female);        
+        //Add Names
+        svg.selectAll("text")
+            .data(peopleData)
+            .enter().append("text")
+            .attr("x", function (d) { return d.G === "M" ? d.x - 10 : d.x - 40; })
+            .attr("y", function (d) { return d.G === "M" ? d.y - 50 : d.y - 26; })
+            .text(function (d) { return d.name })
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "10px")
+            .attr("fill", nameColor);
+        //All Horizontal Lines
+
+        svg.selectAll("horizontals")
+            .data(horizontals)
+            .enter().append("line")
+            .attr("x1", function (d) { return d.x1; })
+            .attr("y1", function (d) { return d.y1; })
+            .attr("x2", function (d) { return d.x2; })
+            .attr("y2", function (d) { return d.y2; })
+            .attr("stroke-width", 0.5)
+            .style("fill-opacity", 0.5)
+            .attr("stroke", function (d) { return d.f; });
+        //All Vertical Lines
+        svg.selectAll("verticals")
+            .data(verticals)
+            .enter().append("line")
+            .attr("x1", function (d) { return d.x1; })
+            .attr("y1", function (d) { return d.y1; })
+            .attr("x2", function (d) { return d.x2; })
+            .attr("y2", function (d) { return d.y2; })
+            .attr("stroke-width", 0.5)
+            .style("fill-opacity", 0.5)
+            .attr("stroke", function (d) { return d.f; });
+    </script>
+</body>
+</html>
