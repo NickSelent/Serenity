@@ -27,6 +27,7 @@
         marriageColor = "green";
         nameColor = "#000000";
         lineColor = "#000000";
+        namefontsize = 10;
 
         var svg = d3.select("body")
             .append("svg")
@@ -43,49 +44,56 @@
         d3.select('svg').on('mousemove', findTheMouse);
         //x is Horizontal placement of top left corner
         //y is Vertical placement
+        //d deceased
         var male = [
-              { x: 138, y: 175, G: "M", B: "B", name: "Varevesena Zhas", more : "207th Emperor of the Elflands"  }
-            , { x: 238, y: 325, G: "M", B: "B", name: "Varenechibel IV", more : "208th Emperor of the Elflands" }
-            , { x: 200, y: 450, G: "M", B: "B", name: "Nemolis Drazhar" }
-            , { x: 600, y: 450, G: "M", B: "B", name: "Nazhira Drazhar" }
-            , { x: 725, y: 450, G: "M", B: "B", name: "Ciris Drazhar" }
-            , { x: 975, y: 450, G: "M", B: "B", name: "Maia Drazhar" }
-            , { x: 200, y: 650, G: "M", B: "B", name: "Idra Drazhar" }];
+              { x: 138, y: 175, G: "M", B: "B", name: "Varevesena Zhas", more : "207th Emperor of the Elflands" ,D: true }
+            , { x: 238, y: 325, G: "M", B: "B", name: "Varenechibel IV", more : "208th Emperor of the Elflands" ,D: true }
+            , { x: 238, y: 450, G: "M", B: "B", name: "Nemolis Drazhar" ,D: true }
+            , { x: 638, y: 450, G: "M", B: "B", name: "Nazhira Drazhar" ,D: true }
+            , { x: 763, y: 450, G: "M", B: "B", name: "Ciris Drazhar" ,D: true }
+            , { x: 970, y: 450, G: "M", B: "B", name: "Maia Drazhar" ,D: false }
+            , { x: 238, y: 540, G: "M", B: "B", name: "Idra Drazhar" ,D: false }
+            , { x: 900, y: 175, G: "M", B: "B", name: "Great Avar, Maru" ,D: false}];
 
         //x,y of center
         var female = [
-              { x: 350, y: 175, G: "F", B: "M", name: "???" }            
-            , { x: 400, y: 325, G: "F", B: "M", name: "Arbelan Drazharan" }
-            , { x: 600, y: 325, G: "F", B: "M", name: "Leshan Drazharan" }
-            , { x: 800, y: 325, G: "F", B: "M", name: "Pazhiro Drazharan" }
-            , { x: 1000, y: 300, G: "F", B: "M", name: "Chenelo Drazharan" }
-            , { x: 1200, y: 300, G: "F", B: "M", name: "Csoru Drazharan" }
-            , { x: 375, y: 500, G: "F", B: "M", name: "Shevean Drazharan" }
-            , { x: 500, y: 500, G: "F", B: "B", name: "Nemrian Imaran" }
-            , { x: 900, y: 500, G: "F", B: "B", name: "Vedero Drazhin" }
-            , { x: 375, y: 700, G: "F", B: "B", name: "Mirean Drazhin" }
-            , { x: 500, y: 700, G: "F", B: "B", name: "Ino Drazhin" }];
+              { x: 350, y: 185, G: "F", B: "M", name: "Mother of Varenechibel IV" ,D: true}            
+            , { x: 400, y: 335, G: "F", B: "M", name: "Arbelan Drazharan" ,D: false}
+            , { x: 600, y: 335, G: "F", B: "M", name: "Leshan Drazharan" ,D: true}
+            , { x: 800, y: 335, G: "F", B: "M", name: "Pazhiro Drazharan" ,D: true}
+            , { x: 1000, y: 335, G: "F", B: "M", name: "Chenelo Drazharan" ,D: true}
+            , { x: 1200, y: 335, G: "F", B: "M", name: "Csoru Drazharan" ,D: false}
+            , { x: 375, y: 460, G: "F", B: "M", name: "Shevean Drazharan" ,D: false}
+            , { x: 500, y: 460, G: "F", B: "B", name: "Nemrian Imaran" ,D: false}
+            , { x: 900, y: 460, G: "F", B: "B", name: "Vedero Drazhin" ,D: false}
+            , { x: 375, y: 550, G: "F", B: "B", name: "Mirean Drazhin" ,D: false}
+            , { x: 500, y: 550, G: "F", B: "B", name: "Ino Drazhin" ,D: false}
+            , { x: 1100, y: 185, G: "F", B: "M", name: "Mother of Chenelo" ,D: true}            ];
 
+            //Pazhiro Drazharan 4th child Unamed (d) Mother and infant died in childbirth. 
+
+        //TODO: How can these lines be calculated instead of manual???
         //Horizontal Lines
         var horizontals = [
               { x1: 150, y1: 225, x2: 350, y2: 225, f: lineColor, union: "Varevesena Spouse" }
             , { x1: 250, y1: 375, x2: 1200, y2: 375, f: lineColor, union: "Varenechibel Spouses" }
             , { x1: 250, y1: 400, x2: 500, y2: 400, f: lineColor, union: "Leshan Children" }
             , { x1: 650, y1: 400, x2: 900, y2: 400, f: lineColor, union: "Pazhiro Children" }
-            , { x1: 250, y1: 575, x2: 375, y2: 575, f: lineColor, union: "Nemolis Spouse" }
-            , { x1: 250, y1: 600, x2: 500, y2: 600, f: lineColor, union: "Shevean Children" }];
+            , { x1: 250, y1: 505, x2: 375, y2: 505, f: lineColor, union: "Nemolis Spouse" }
+            , { x1: 250, y1: 520, x2: 500, y2: 520, f: lineColor, union: "Shevean Children" }
+            , { x1: 920, y1: 225, x2: 1100, y2: 225, f: lineColor, union: "Great Avar Spouses" }];
 
         //Vertical Lines
         var verticals = [
-              { x1: 150, y1: 200, x2: 150, y2: 225, f: lineColor, name: "Connect Varevesena Spouses" }
-            , { x1: 350, y1: 200, x2: 350, y2: 225, f: lineColor, name: "Connect ??? Spouses"}
+              { x1: 150, y1: 215, x2: 150, y2: 225, f: lineColor, name: "Connect Varevesena Spouses" }
+            , { x1: 350, y1: 215, x2: 350, y2: 225, f: lineColor, name: "Connect Mother of Varenechibel IV Spouses"}
             , { x1: 250, y1: 225, x2: 250, y2: 325, f: lineColor, name: "Varenchibel IV Origin" }
-            , { x1: 250, y1: 350, x2: 250, y2: 375, f: lineColor, name: "Connect Varenchibel IV Spouses"} 
-            , { x1: 400, y1: 350, x2: 400, y2: 375, f: lineColor, name: "Connect Arbelan"}
-            , { x1: 600, y1: 350, x2: 600, y2: 375, f: lineColor, name: "Connect Leshan"}
-            , { x1: 800, y1: 350, x2: 800, y2: 375, f: lineColor, name: "Connect Pazhiro"}
-            , { x1: 1000, y1: 350, x2: 1000, y2: 375, f: lineColor, name: "Connect Chenelo"}
-            , { x1: 1200, y1: 350, x2: 1200, y2: 375, f: lineColor, name: "Connect Csoru"}
+            , { x1: 250, y1: 365, x2: 250, y2: 375, f: lineColor, name: "Connect Varenchibel IV Spouses"} 
+            , { x1: 400, y1: 365, x2: 400, y2: 375, f: lineColor, name: "Connect Arbelan"}
+            , { x1: 600, y1: 365, x2: 600, y2: 375, f: lineColor, name: "Connect Leshan"}
+            , { x1: 800, y1: 365, x2: 800, y2: 375, f: lineColor, name: "Connect Pazhiro"}
+            , { x1: 1000, y1: 365, x2: 1000, y2: 375, f: lineColor, name: "Connect Chenelo"}
+            , { x1: 1200, y1: 365, x2: 1200, y2: 375, f: lineColor, name: "Connect Csoru"}
             , { x1: 450, y1: 375, x2: 450, y2: 400, f: lineColor, name: "Connect Leshan Children"}
             , { x1: 250, y1: 400, x2: 250, y2: 450, f: lineColor, name: "Connect Nemolis"}
             , { x1: 500, y1: 400, x2: 500, y2: 450, f: lineColor, name: "Connect Nemrian"}
@@ -93,13 +101,16 @@
             , { x1: 650, y1: 400, x2: 650, y2: 450, f: lineColor, name: "Connect Nazhira"}
             , { x1: 775, y1: 400, x2: 775, y2: 450, f: lineColor, name: "Connect Ciris"}
             , { x1: 900, y1: 400, x2: 900, y2: 450, f: lineColor, name: "Connect Vedero"}
-            , { x1: 985, y1: 375, x2: 985, y2: 450, f: lineColor, name: "Connect Maia"}
-            , { x1: 250, y1: 550, x2: 250, y2: 575, f: lineColor, name: "Connect Nemolis Spouse"}
-            , { x1: 375, y1: 550, x2: 375, y2: 575, f: lineColor, name: "Connect Shevean Spouse"}
-            , { x1: 350, y1: 575, x2: 350, y2: 600, f: lineColor, name: "Connect Shevean Children"}
-            , { x1: 250, y1: 600, x2: 250, y2: 650, f: lineColor, name: "Connect Idra"}
-            , { x1: 375, y1: 600, x2: 375, y2: 650, f: lineColor, name: "Connect Mirean"}
-            , { x1: 500, y1: 600, x2: 500, y2: 650, f: lineColor, name: "Connect Ino"} ];
+            , { x1: 983, y1: 375, x2: 983, y2: 450, f: lineColor, name: "Connect Maia"}
+            , { x1: 250, y1: 490, x2: 250, y2: 505, f: lineColor, name: "Connect Nemolis Spouse"}
+            , { x1: 375, y1: 490, x2: 375, y2: 505, f: lineColor, name: "Connect Shevean Spouse"}
+            , { x1: 350, y1: 505, x2: 350, y2: 520, f: lineColor, name: "Connect Shevean Children"}
+            , { x1: 250, y1: 520, x2: 250, y2: 540, f: lineColor, name: "Connect Idra"}
+            , { x1: 375, y1: 520, x2: 375, y2: 540, f: lineColor, name: "Connect Mirean"}
+            , { x1: 500, y1: 520, x2: 500, y2: 540, f: lineColor, name: "Connect Ino"} 
+            , { x1: 920, y1: 215, x2: 920, y2: 225, f: lineColor, name: "Connect Great Avar Spouses" }
+            , { x1: 1100, y1: 215, x2: 1100, y2: 225, f: lineColor, name: "Connect Mother ofChenelo Spouses"}
+            , { x1: 1000, y1: 225, x2: 1000, y2: 325, f: lineColor, name: "Chenelo Origin" }];
 
         //svg.selectAll("rect").remove(); //remove can be used if you want to redraw these after an interaction...
         //Create Rectangles for each person
@@ -122,7 +133,7 @@
             .attr("r", 13)
             .attr("stroke", function (d) { return d.B === "B" ? bloodColor : marriageColor; })
             .attr("stroke-width", 2)
-            .style("fill-opacity", 0.5)
+            .style("fill-opacity", 0.2)
             .style("fill", function (d) { return d.G === "M" ? maleColor : femaleColor; }); 
 
         
@@ -131,14 +142,28 @@
         svg.selectAll("text")
             .data(peopleData)
             .enter().append("text")
-            .attr("x", function (d) { return d.G === "M" ? d.x - 10 : d.x - 40; })
-            .attr("y", function (d) { return d.G === "M" ? d.y - 50 : d.y - 26; })
+            .attr("x", function (d) { return d.G === "M" ? d.x  : d.x - rectHeight; })
+            .attr("y", function (d) { return d.G === "M" ? d.y + rectHeight + namefontsize : d.y + rectHeight; })
             .text(function (d) { return d.name })
             .attr("font-family", "sans-serif")
-            .attr("font-size", "10px")
+            .attr("font-size", namefontsize)
             .attr("fill", nameColor);
-        //All Horizontal Lines
 
+        //mark deceased
+        svg.selectAll("deceased")
+            .data(peopleData.filter(function(d) { return d.D === true }))
+            .enter().append("line")
+            .attr("x1", function (d) { return d.G === "M" ? d.x  :d.x + (rectHeight/3); })
+            .attr("y1", function (d) { return d.G === "M" ? d.y  :d.y + (rectHeight/3); })
+            .attr("x2", function (d) { return d.G === "M" ? d.x + rectHeight :d.x - (rectHeight/3); })
+            .attr("y2", function (d) { return d.G === "M" ? d.y + rectHeight :d.y - (rectHeight/3); })
+            .attr("stroke-width", 2)
+            .style("fill-opacity", 1)
+            .attr("stroke", function (d) { return femaleColor; });
+
+
+
+        //All Horizontal Lines
         svg.selectAll("horizontals")
             .data(horizontals)
             .enter().append("line")
