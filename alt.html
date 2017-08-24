@@ -24,7 +24,7 @@
         rectHeight = 26;
         rectBorder = "green"; //"#000000";
         bloodColor = "#000000";//"none"
-        marriageColor = "green";
+        marriageColor = "#000000"; //Was thinking of showing connection to Maia by Blood or Marriage "green"
         nameColor = "#000000";
         lineColor = "#000000";
         namefontsize = 10;
@@ -53,7 +53,7 @@
             , { x: 763, y: 450, G: "M", B: "B", name: "Ciris Drazhar" ,D: true }
             , { x: 970, y: 450, G: "M", B: "B", name: "Maia Drazhar" ,D: false }
             , { x: 238, y: 540, G: "M", B: "B", name: "Idra Drazhar" ,D: false }
-            , { x: 900, y: 175, G: "M", B: "B", name: "Great Avar, Maru" ,D: false}];
+            , { x: 900, y: 175, G: "M", B: "B", name: "Maru Sevraseched", more : "The Great Avar of Barizhan"  ,D: false}];
 
         //x,y of center
         var female = [
@@ -61,15 +61,21 @@
             , { x: 400, y: 335, G: "F", B: "M", name: "Arbelan Drazharan" ,D: false}
             , { x: 600, y: 335, G: "F", B: "M", name: "Leshan Drazharan" ,D: true}
             , { x: 800, y: 335, G: "F", B: "M", name: "Pazhiro Drazharan" ,D: true}
-            , { x: 1000, y: 335, G: "F", B: "M", name: "Chenelo Drazharan" ,D: true}
+            , { x: 1000, y: 335, G: "F", B: "M", name: "Chenelo Drazharan" , more: "Second legitimate daughter of Maru Sevraseched", D: true}
             , { x: 1200, y: 335, G: "F", B: "M", name: "Csoru Drazharan" ,D: false}
             , { x: 375, y: 460, G: "F", B: "M", name: "Shevean Drazharan" ,D: false}
             , { x: 500, y: 460, G: "F", B: "B", name: "Nemrian Imaran" ,D: false}
             , { x: 900, y: 460, G: "F", B: "B", name: "Vedero Drazhin" ,D: false}
             , { x: 375, y: 550, G: "F", B: "B", name: "Mirean Drazhin" ,D: false}
             , { x: 500, y: 550, G: "F", B: "B", name: "Ino Drazhin" ,D: false}
-            , { x: 1100, y: 185, G: "F", B: "M", name: "Mother of Chenelo" ,D: true}            ];
-
+            , { x: 1100, y: 185, G: "F", B: "M", name: "Mother of Chenelo" ,D: true}  
+            , { x: 900, y: 275, G: "F", B: "M", name: "Thever Sevraseched" , more: "Elder legitimate daughter of Maru Sevraseched", D: false}
+            , { x: 1100, y: 275, G: "F", B: "M", name: "Holitho Sevraseched" , more: "A votary in Urvekh", D: false}
+            , { x: 1200, y: 275, G: "F", B: "M", name: "Shaleän Sevraseched" , more: "A sea captain; her ship is the Glorious Dragon", D: false}
+            , { x: 1300, y: 275, G: "F", B: "M", name: "Nadeian Vizhenka" , more: "Wife of Captain Vizhenka", D: false}
+            , { x: 1400, y: 275, G: "F", B: "M", name: "Ursu Perenched" , more: "A sea captain’s wife", D: false}
+            ];
+            
             //Pazhiro Drazharan 4th child Unamed (d) Mother and infant died in childbirth. 
 
         //TODO: How can these lines be calculated instead of manual???
@@ -81,7 +87,8 @@
             , { x1: 650, y1: 400, x2: 900, y2: 400, f: lineColor, union: "Pazhiro Children" }
             , { x1: 250, y1: 505, x2: 375, y2: 505, f: lineColor, union: "Nemolis Spouse" }
             , { x1: 250, y1: 520, x2: 500, y2: 520, f: lineColor, union: "Shevean Children" }
-            , { x1: 920, y1: 225, x2: 1100, y2: 225, f: lineColor, union: "Great Avar Spouses" }];
+            , { x1: 920, y1: 225, x2: 1100, y2: 225, f: lineColor, union: "Great Avar Spouses" }
+            , { x1: 900, y1: 250, x2: 1400, y2: 250, f: lineColor, union: "Great Avar Children" }];
 
         //Vertical Lines
         var verticals = [
@@ -109,8 +116,13 @@
             , { x1: 375, y1: 520, x2: 375, y2: 540, f: lineColor, name: "Connect Mirean"}
             , { x1: 500, y1: 520, x2: 500, y2: 540, f: lineColor, name: "Connect Ino"} 
             , { x1: 920, y1: 215, x2: 920, y2: 225, f: lineColor, name: "Connect Great Avar Spouses" }
-            , { x1: 1100, y1: 215, x2: 1100, y2: 225, f: lineColor, name: "Connect Mother ofChenelo Spouses"}
-            , { x1: 1000, y1: 225, x2: 1000, y2: 325, f: lineColor, name: "Chenelo Origin" }];
+            , { x1: 1100, y1: 215, x2: 1100, y2: 225, f: lineColor, name: "Connect Mother of Chenelo Spouses"}
+            , { x1: 1000, y1: 225, x2: 1000, y2: 325, f: lineColor, name: "Chenelo Origin" }
+            , { x1: 900, y1: 250, x2: 900, y2: 265, f: lineColor, name: "Thever Origin" }
+            , { x1: 1100, y1: 250, x2: 1100, y2: 265, f: lineColor, name: "Holitho Origin"}
+            , { x1: 1200, y1: 250, x2: 1200, y2: 265, f: lineColor, name: "Shaleän Origin"}
+            , { x1: 1300, y1: 250, x2: 1300, y2: 265, f: lineColor, name: "Nadeian Origin"}
+            , { x1: 1400, y1: 250, x2: 1400, y2: 265, f: lineColor, name: "Ursu Origin"}];
 
         //svg.selectAll("rect").remove(); //remove can be used if you want to redraw these after an interaction...
         //Create Rectangles for each person
