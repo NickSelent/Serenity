@@ -46,37 +46,68 @@
         //y is Vertical placement
         //d deceased
         var male = [
-              { x: 138, y: 175, G: "M", B: "B", name: "Varevesena Zhas", more : "207th Emperor of the Elflands" ,D: true }
-            , { x: 238, y: 325, G: "M", B: "B", name: "Varenechibel IV", more : "208th Emperor of the Elflands" ,D: true }
-            , { x: 238, y: 450, G: "M", B: "B", name: "Nemolis Drazhar" ,D: true }
-            , { x: 638, y: 450, G: "M", B: "B", name: "Nazhira Drazhar" ,D: true }
-            , { x: 763, y: 450, G: "M", B: "B", name: "Ciris Drazhar" ,D: true }
-            , { x: 970, y: 450, G: "M", B: "B", name: "Maia Drazhar" ,D: false }
-            , { x: 238, y: 540, G: "M", B: "B", name: "Idra Drazhar" ,D: false }
-            , { x: 900, y: 175, G: "M", B: "B", name: "Maru Sevraseched", more : "The Great Avar of Barizhan"  ,D: false}];
+              { id: 1,x: 138, y: 175, G: "M", B: "B", name: "Varevesena Zhas", more : "207th Emperor of the Elflands" ,D: true }
+            , { id: 2,x: 238, y: 325, G: "M", B: "B", name: "Varenechibel IV", more : "208th Emperor of the Elflands" ,D: true }
+            , { id: 3,x: 238, y: 450, G: "M", B: "B", name: "Nemolis Drazhar" ,D: true }
+            , { id: 4,x: 638, y: 450, G: "M", B: "B", name: "Nazhira Drazhar" ,D: true }
+            , { id: 5,x: 763, y: 450, G: "M", B: "B", name: "Ciris Drazhar" ,D: true }
+            , { id: 6,x: 970, y: 450, G: "M", B: "B", name: "Maia Drazhar" ,D: false }
+            , { id: 7,x: 238, y: 540, G: "M", B: "B", name: "Idra Drazhar" ,D: false }
+            , { id: 8,x: 900, y: 175, G: "M", B: "B", name: "Maru Sevraseched", more : "The Great Avar of Barizhan"  ,D: false}];
 
         //x,y of center
         var female = [
-              { x: 350, y: 185, G: "F", B: "M", name: "Mother of Varenechibel IV" ,D: true}            
-            , { x: 400, y: 335, G: "F", B: "M", name: "Arbelan Drazharan" ,D: false}
-            , { x: 600, y: 335, G: "F", B: "M", name: "Leshan Drazharan" ,D: true}
-            , { x: 800, y: 335, G: "F", B: "M", name: "Pazhiro Drazharan" ,D: true}
-            , { x: 1000, y: 335, G: "F", B: "M", name: "Chenelo Drazharan" , more: "Second legitimate daughter of Maru Sevraseched", D: true}
-            , { x: 1200, y: 335, G: "F", B: "M", name: "Csoru Drazharan" ,D: false}
-            , { x: 375, y: 460, G: "F", B: "M", name: "Shevean Drazharan" ,D: false}
-            , { x: 500, y: 460, G: "F", B: "B", name: "Nemrian Imaran" ,D: false}
-            , { x: 900, y: 460, G: "F", B: "B", name: "Vedero Drazhin" ,D: false}
-            , { x: 375, y: 550, G: "F", B: "B", name: "Mirean Drazhin" ,D: false}
-            , { x: 500, y: 550, G: "F", B: "B", name: "Ino Drazhin" ,D: false}
-            , { x: 1100, y: 185, G: "F", B: "M", name: "Mother of Chenelo" ,D: true}  
-            , { x: 900, y: 275, G: "F", B: "M", name: "Thever Sevraseched" , more: "Elder legitimate daughter of Maru Sevraseched", D: false}
-            , { x: 1100, y: 275, G: "F", B: "M", name: "Holitho Sevraseched" , more: "A votary in Urvekh", D: false}
-            , { x: 1200, y: 275, G: "F", B: "M", name: "Shaleän Sevraseched" , more: "A sea captain; her ship is the Glorious Dragon", D: false}
-            , { x: 1300, y: 275, G: "F", B: "M", name: "Nadeian Vizhenka" , more: "Wife of Captain Vizhenka", D: false}
-            , { x: 1400, y: 275, G: "F", B: "M", name: "Ursu Perenched" , more: "A sea captain’s wife", D: false}
+              { id: 9,x: 350, y: 185, G: "F", B: "M", name: "Mother of Varenechibel IV" ,D: true}            
+            , { id: 10,x: 400, y: 335, G: "F", B: "M", name: "Arbelan Drazharan" ,D: false}
+            , { id: 11,x: 600, y: 335, G: "F", B: "M", name: "Leshan Drazharan" ,D: true}
+            , { id: 12,x: 800, y: 335, G: "F", B: "M", name: "Pazhiro Drazharan" ,D: true}
+            , { id: 13,x: 1000, y: 335, G: "F", B: "M", name: "Chenelo Drazharan" , more: "Second legitimate daughter of Maru Sevraseched", D: true}
+            , { id: 14,x: 1200, y: 335, G: "F", B: "M", name: "Csoru Drazharan" ,D: false}
+            , { id: 15,x: 375, y: 460, G: "F", B: "M", name: "Sheveän Drazharan" ,D: false}
+            , { id: 16,x: 500, y: 460, G: "F", B: "B", name: "Nemriän Imaran" ,D: false, more:"wife of the Marquess Imel"}
+            , { id: 17,x: 900, y: 460, G: "F", B: "B", name: "Vedero Drazhin" ,D: false}
+            , { id: 18,x: 375, y: 550, G: "F", B: "B", name: "Mirean Drazhin" ,D: false}
+            , { id: 19,x: 500, y: 550, G: "F", B: "B", name: "Ino Drazhin" ,D: false}
+            , { id: 20,x: 1100, y: 185, G: "F", B: "M", name: "Mother of Chenelo" ,D: true}  
+            , { id: 21,x: 900, y: 275, G: "F", B: "M", name: "Thever Sevraseched" , more: "Elder legitimate daughter of Maru Sevraseched", D: false}
+            , { id: 22,x: 1100, y: 275, G: "F", B: "M", name: "Holitho Sevraseched" , more: "A votary in Urvekh", D: false}
+            , { id: 23,x: 1200, y: 275, G: "F", B: "M", name: "Shaleän Sevraseched" , more: "A sea captain; her ship is the Glorious Dragon", D: false}
+            , { id: 24,x: 1300, y: 275, G: "F", B: "M", name: "Nadeian Vizhenka" , more: "Wife of Captain Vizhenka", D: false}
+            , { id: 25,x: 1400, y: 275, G: "F", B: "M", name: "Ursu Perenched" , more: "A sea captain’s wife", D: false}
             ];
             
             //Pazhiro Drazharan 4th child Unamed (d) Mother and infant died in childbirth. 
+        var union = [{m:1,f:9}
+        ,{m:2,f:10}
+        ,{m:2,f:11}
+        ,{m:2,f:12}
+        ,{m:2,f:13}
+        ,{m:2,f:14}
+        ,{m:8,f:20}
+        ,{m:3,f:15}
+        ];
+
+var testvar = [];
+//for each union add the male and female to a new var if they are not already there.
+union.forEach(createConnections);
+
+function createConnections(item,index) {
+    for (var i = 0; i < male.length; i++) {
+        if(male[i].id === item.m)
+            testvar.push(male[i]);
+    }
+    for (var i = 0; i < female.length; i++) {
+        if(female[i].id === item.f)
+            testvar.push(female[i]);
+    }
+}
+
+//testvar.forEach(printme);
+//
+//function printme(item,index) {
+//   console.log(item.name)
+//}
+
 
         //TODO: How can these lines be calculated instead of manual???
         //Horizontal Lines
@@ -92,15 +123,11 @@
 
         //Vertical Lines
         var verticals = [
-              { x1: 150, y1: 215, x2: 150, y2: 225, f: lineColor, name: "Connect Varevesena Spouses" }
-            , { x1: 350, y1: 215, x2: 350, y2: 225, f: lineColor, name: "Connect Mother of Varenechibel IV Spouses"}
-            , { x1: 250, y1: 225, x2: 250, y2: 325, f: lineColor, name: "Varenchibel IV Origin" }
-            , { x1: 250, y1: 365, x2: 250, y2: 375, f: lineColor, name: "Connect Varenchibel IV Spouses"} 
-            , { x1: 400, y1: 365, x2: 400, y2: 375, f: lineColor, name: "Connect Arbelan"}
-            , { x1: 600, y1: 365, x2: 600, y2: 375, f: lineColor, name: "Connect Leshan"}
-            , { x1: 800, y1: 365, x2: 800, y2: 375, f: lineColor, name: "Connect Pazhiro"}
-            , { x1: 1000, y1: 365, x2: 1000, y2: 375, f: lineColor, name: "Connect Chenelo"}
-            , { x1: 1200, y1: 365, x2: 1200, y2: 375, f: lineColor, name: "Connect Csoru"}
+  
+  
+             { x1: 250, y1: 225, x2: 250, y2: 325, f: lineColor, name: "Varenchibel IV Origin" }
+
+
             , { x1: 450, y1: 375, x2: 450, y2: 400, f: lineColor, name: "Connect Leshan Children"}
             , { x1: 250, y1: 400, x2: 250, y2: 450, f: lineColor, name: "Connect Nemolis"}
             , { x1: 500, y1: 400, x2: 500, y2: 450, f: lineColor, name: "Connect Nemrian"}
@@ -109,14 +136,12 @@
             , { x1: 775, y1: 400, x2: 775, y2: 450, f: lineColor, name: "Connect Ciris"}
             , { x1: 900, y1: 400, x2: 900, y2: 450, f: lineColor, name: "Connect Vedero"}
             , { x1: 983, y1: 375, x2: 983, y2: 450, f: lineColor, name: "Connect Maia"}
-            , { x1: 250, y1: 490, x2: 250, y2: 505, f: lineColor, name: "Connect Nemolis Spouse"}
-            , { x1: 375, y1: 490, x2: 375, y2: 505, f: lineColor, name: "Connect Shevean Spouse"}
+
             , { x1: 350, y1: 505, x2: 350, y2: 520, f: lineColor, name: "Connect Shevean Children"}
             , { x1: 250, y1: 520, x2: 250, y2: 540, f: lineColor, name: "Connect Idra"}
             , { x1: 375, y1: 520, x2: 375, y2: 540, f: lineColor, name: "Connect Mirean"}
             , { x1: 500, y1: 520, x2: 500, y2: 540, f: lineColor, name: "Connect Ino"} 
-            , { x1: 920, y1: 215, x2: 920, y2: 225, f: lineColor, name: "Connect Great Avar Spouses" }
-            , { x1: 1100, y1: 215, x2: 1100, y2: 225, f: lineColor, name: "Connect Mother of Chenelo Spouses"}
+ 
             , { x1: 1000, y1: 225, x2: 1000, y2: 325, f: lineColor, name: "Chenelo Origin" }
             , { x1: 900, y1: 250, x2: 900, y2: 265, f: lineColor, name: "Thever Origin" }
             , { x1: 1100, y1: 250, x2: 1100, y2: 265, f: lineColor, name: "Holitho Origin"}
@@ -135,7 +160,10 @@
             .attr("height", rectHeight)
             .attr("stroke", function (d) { return d.B === "B" ? bloodColor : marriageColor; })
             .style("fill-opacity", 0.5)
-            .style("fill", function (d) { return d.G === "M" ? maleColor : femaleColor; }); 
+            .style("fill", function (d) { return d.G === "M" ? maleColor : femaleColor; })
+            .on("mouseover", function(d){tooltip.text(d.more); return tooltip.style("visibility", "visible");})
+            .on("mousemove", function(d){tooltip.text(d.more); return tooltip.style("top",  (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+            .on("mouseout", function(){return tooltip.style("visibility", "hidden");});  
 
 var tooltip = d3.select("body")
             .append("div")
@@ -197,6 +225,8 @@ var tooltip = d3.select("body")
             .attr("stroke-width", 0.5)
             .style("fill-opacity", 0.5)
             .attr("stroke", function (d) { return d.f; });
+
+
         //All Vertical Lines
         svg.selectAll("verticals")
             .data(verticals)
@@ -208,6 +238,19 @@ var tooltip = d3.select("body")
             .attr("stroke-width", 0.5)
             .style("fill-opacity", 0.5)
             .attr("stroke", function (d) { return d.f; });
+
+
+//These crazy formulas for line length should all be prefactored...
+            svg.selectAll("verticals")
+            .data(testvar)
+            .enter().append("line")
+            .attr("x1", function (d) { return d.G === "M" ? d.x + (rectWidth/2) : d.x; })
+            .attr("y1", function (d) { return d.G === "M" ? d.y + rectHeight + namefontsize + 4 : d.y + (rectHeight/2) + namefontsize + 4; })
+            .attr("x2", function (d) { return d.G === "M" ? d.x + (rectWidth/2) : d.x; })
+            .attr("y2", function (d) { return d.G === "M" ? d.y + rectHeight + namefontsize + rectHeight : d.y + (rectHeight/2) + namefontsize + rectHeight; })
+            .attr("stroke-width", 1)
+            .style("fill-opacity", 1)
+            .attr("stroke", "green");
     </script>
 </body>
 </html>
