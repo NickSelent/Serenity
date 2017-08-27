@@ -112,13 +112,11 @@ function createConnections(item,index) {
         //TODO: How can these lines be calculated instead of manual???
         //Horizontal Lines
         var horizontals = [
-              { x1: 150, y1: 225, x2: 350, y2: 225, f: lineColor, union: "Varevesena Spouse" }
-            , { x1: 250, y1: 375, x2: 1200, y2: 375, f: lineColor, union: "Varenechibel Spouses" }
-            , { x1: 250, y1: 400, x2: 500, y2: 400, f: lineColor, union: "Leshan Children" }
+          { x1: 250, y1: 400, x2: 500, y2: 400, f: lineColor, union: "Leshan Children" }
             , { x1: 650, y1: 400, x2: 900, y2: 400, f: lineColor, union: "Pazhiro Children" }
-            , { x1: 250, y1: 505, x2: 375, y2: 505, f: lineColor, union: "Nemolis Spouse" }
+         
             , { x1: 250, y1: 520, x2: 500, y2: 520, f: lineColor, union: "Shevean Children" }
-            , { x1: 920, y1: 225, x2: 1100, y2: 225, f: lineColor, union: "Great Avar Spouses" }
+       
             , { x1: 900, y1: 250, x2: 1400, y2: 250, f: lineColor, union: "Great Avar Children" }];
 
         //Vertical Lines
@@ -241,16 +239,30 @@ var tooltip = d3.select("body")
 
 
 //These crazy formulas for line length should all be prefactored...
+//Create verticals connecting to the spouse line.
             svg.selectAll("verticals")
             .data(testvar)
             .enter().append("line")
             .attr("x1", function (d) { return d.G === "M" ? d.x + (rectWidth/2) : d.x; })
-            .attr("y1", function (d) { return d.G === "M" ? d.y + rectHeight + namefontsize + 4 : d.y + (rectHeight/2) + namefontsize + 4; })
+            .attr("y1", function (d) { return d.G === "M" ? d.y + rectHeight + namefontsize + 4 : d.y + (rectHeight/2) + namefontsize + 6; })
             .attr("x2", function (d) { return d.G === "M" ? d.x + (rectWidth/2) : d.x; })
-            .attr("y2", function (d) { return d.G === "M" ? d.y + rectHeight + namefontsize + rectHeight : d.y + (rectHeight/2) + namefontsize + rectHeight; })
+            .attr("y2", function (d) { return d.G === "M" ? d.y + rectHeight + namefontsize + rectHeight : d.y + 16 + namefontsize + rectHeight; })
             .attr("stroke-width", 1)
             .style("fill-opacity", 1)
             .attr("stroke", "green");
+
+//Create horizontal spouse line
+            svg.selectAll("horizontals")
+            .data(testvar)
+            .enter().append("line")
+            .attr("x1", function (d) { return d.G === "M" ? d.x + (rectWidth/2) : d.x; })
+            .attr("y1", function (d) { return d.G === "M" ? d.y + rectHeight + namefontsize + rectHeight : d.y + 16 + namefontsize + rectHeight; })
+            .attr("x2", function (d) { return d.G === "M" ? d.x + (rectWidth/2) +100 : d.x -100; })
+            .attr("y2", function (d) { return d.G === "M" ? d.y + rectHeight + namefontsize + rectHeight : d.y + 16 + namefontsize + rectHeight; })
+            .attr("stroke-width", 1)
+            .style("fill-opacity", 1)
+            .attr("stroke", "green");
+
     </script>
 </body>
 </html>
