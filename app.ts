@@ -1,13 +1,15 @@
-maleColor = "#B8DEE6";
-femaleColor = "RED";
-rectWidth = 26;
-rectHeight = 26;
-rectBorder = "green"; //"#000000";
-bloodColor = "#000000";//"none"
-marriageColor = "#000000"; //Was thinking of showing connection to Maia by Blood or Marriage "green"
-nameColor = "#000000";
-lineColor = "#000000";
-namefontsize = 10;
+declare var d3: any;
+
+var maleColor = "#B8DEE6";
+var femaleColor = "RED";
+var rectWidth = 26;
+var rectHeight = 26;
+var rectBorder = "green"; //"#000000";
+var bloodColor = "#000000";//"none"
+var marriageColor = "#000000"; //Was thinking of showing connection to Maia by Blood or Marriage "green"
+var nameColor = "#000000";
+var lineColor = "#000000";
+var namefontsize = 10;
 
 var svg = d3.select("body")
     .append("svg")

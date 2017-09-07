@@ -1,13 +1,13 @@
-maleColor = "#B8DEE6";
-femaleColor = "RED";
-rectWidth = 26;
-rectHeight = 26;
-rectBorder = "green"; //"#000000";
-bloodColor = "#000000"; //"none"
-marriageColor = "#000000"; //Was thinking of showing connection to Maia by Blood or Marriage "green"
-nameColor = "#000000";
-lineColor = "#000000";
-namefontsize = 10;
+var maleColor = "#B8DEE6";
+var femaleColor = "RED";
+var rectWidth = 26;
+var rectHeight = 26;
+var rectBorder = "green"; //"#000000";
+var bloodColor = "#000000"; //"none"
+var marriageColor = "#000000"; //Was thinking of showing connection to Maia by Blood or Marriage "green"
+var nameColor = "#000000";
+var lineColor = "#000000";
+var namefontsize = 10;
 var svg = d3.select("body")
     .append("svg")
     .attr("width", "100%")
@@ -209,7 +209,7 @@ svg.selectAll("horizontals")
     .enter().append("line")
     .attr("x1", function (d) { return d.G === "M" ? d.x + (rectWidth / 2) : d.x; })
     .attr("y1", function (d) { return d.G === "M" ? d.y + rectHeight + namefontsize + rectHeight : d.y + 16 + namefontsize + rectHeight; })
-    .attr("x2", function (d) { return d.G === "M" ? d.x + (rectWidth / 2) + 100 : d.x - 200; })
+    .attr("x2", function (d) { return d.G === "M" ? d.x + (rectWidth / 2) + 100 : d.x - 100; })
     .attr("y2", function (d) { return d.G === "M" ? d.y + rectHeight + namefontsize + rectHeight : d.y + 16 + namefontsize + rectHeight; })
     .attr("stroke-width", 1)
     .style("fill-opacity", 1)
