@@ -59,6 +59,8 @@ var female = [
     ];
     
     //Pazhiro Drazharan 4th child Unamed (d) Mother and infant died in childbirth. 
+
+    //create a var to hold the union between spouses
 var union = [{m:1,f:9}
 ,{m:2,f:10}
 ,{m:2,f:11}
@@ -68,6 +70,8 @@ var union = [{m:1,f:9}
 ,{m:8,f:20}
 ,{m:3,f:15}
 ];
+
+
 
 var testvar = [];
 //for each union add the male and female to a new var if they are not already there.
@@ -84,6 +88,58 @@ if(female[i].id === item.f)
 }
 }
 
+
+
+
+//create another union like object to create a join across all children of the same mother.
+//horizontal line from the mid of the far left to the mid of far right... n pixals above the x
+var childunion = [{mother:11,child:3, union: "Leshan Children"}
+,{mother:11,child:16, union: "Leshan Children"}
+,{mother:12,child:4, union: "Pazhiro Children"}
+,{mother:12,child:5, union: "Pazhiro Children"}
+,{mother:12,child:17, union: "Pazhiro Children"}
+,{mother:15,child:7, union: "Shevean Children"}
+,{mother:15,child:18, union: "Shevean Children"}
+,{mother:15,child:19, union: "Shevean Children"}
+,{mother:20,child:21, union: "Great Avar Children"}
+,{mother:20,child:13, union: "Great Avar Children"}
+,{mother:20,child:22, union: "Great Avar Children"}
+,{mother:20,child:23, union: "Great Avar Children"}
+,{mother:20,child:24, union: "Great Avar Children"}
+,{mother:20,child:25, union: "Great Avar Children"}
+]
+
+var horizontals = [];
+var mothers = [];
+//both y needs to be slightly above the children
+//X needs to be farthest left and farthest right
+childunion.forEach(createRelations);
+
+function createRelations(item,index) {
+for (var i=0; i < female.length; i++) {
+    if(female[i].id === item.mother) {
+        //need to see if mother is already here before adding her
+
+        var newmom = true;
+        for (var j=0; j < mothers.length; j++) {
+            if(mothers[j].id === female[i].id)
+                newmom = false;
+
+        }
+        if(newmom)
+            mothers.push(female[i]);
+    }
+    }
+}
+//then we can iterate mothers to figure out the left right and space children line n pixals below spouses
+
+for (var j=0; j < mothers.length; j++) {
+    horizontals.push({x1:mothers[j].x-100,y1:mothers[j].y+60,x2:mothers[j].x+100,y2:mothers[j].y+60, f: femaleColor, name:mothers[j].name})
+
+}
+
+
+
 //testvar.forEach(printme);
 //
 //function printme(item,index) {
@@ -93,13 +149,9 @@ if(female[i].id === item.f)
 
 //TODO: How can these lines be calculated instead of manual???
 //Horizontal Lines
-var horizontals = [
-  { x1: 250, y1: 400, x2: 500, y2: 400, f: lineColor, union: "Leshan Children" }
-    , { x1: 650, y1: 400, x2: 900, y2: 400, f: lineColor, union: "Pazhiro Children" }
- 
-    , { x1: 250, y1: 520, x2: 500, y2: 520, f: lineColor, union: "Shevean Children" }
 
-    , { x1: 900, y1: 250, x2: 1400, y2: 250, f: lineColor, union: "Great Avar Children" }];
+//horizontal line from the mid of the far left to the mid of far right... n pixals above the x
+//var horizontals = [ { x1: 900, y1: 250, x2: 1400, y2: 250, f: lineColor, union: "Great Avar Children" }];
 
 //Vertical Lines
 var verticals = [
