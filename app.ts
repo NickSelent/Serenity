@@ -133,12 +133,40 @@ for (var i=0; i < female.length; i++) {
 }
 //then we can iterate mothers to figure out the left right and space children line n pixals below spouses
 
-for (var j=0; j < mothers.length; j++) {
-    horizontals.push({x1:mothers[j].x-100,y1:mothers[j].y+60,x2:mothers[j].x+100,y2:mothers[j].y+60, f: femaleColor, name:mothers[j].name})
+    //horizontals.push({x1:mothers[j].x-10,y1:mothers[j].y+60,x2:mothers[j].x+10,y2:mothers[j].y+60, f: femaleColor, name:mothers[j].name})
+    //for each unique mother lets check each child for left most and right most
+    mothers.forEach(createHorizontal);
 
+
+function createHorizontal(item,index) {
+    var left = 999999;
+    var right = 0;
+    for(var i=0; i < childunion.length; i++)
+        {
+            if(childunion[i].mother === item.id)
+                {
+                    //use the child id to get left and right from both male and female arrays
+                    for (var m = 0; m < male.length; m++) {
+                        if(male[m].id === childunion[i].child) {
+                            if(male[m].x < left)
+                                left = male[m].x
+                            if(male[m].x > right)
+                                right = male[m].x
+                        }
+                        }
+                        for (var w = 0; w < female.length; w++) {
+                            if(female[w].id === childunion[i].child){
+                                if(female[w].x < left)
+                                    left = female[w].x
+                                if(female[w].x > right)
+                                    right = female[w].x
+                            }
+                            }
+
+                }
+        }
+        horizontals.push({x1:left,y1:item.y+60,x2:right,y2:item.y+60, f: femaleColor, name:item.name})
 }
-
-
 
 //testvar.forEach(printme);
 //
