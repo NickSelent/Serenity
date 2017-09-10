@@ -77,6 +77,44 @@ function createConnections(item, index) {
             testvar.push(female[i]);
     }
 }
+var distinctHusbands = [];
+union.forEach(createDistinctHusbands);
+function createDistinctHusbands(item, index) {
+    var newspouse = true;
+    for (var i = 0; i < distinctHusbands.length; i++) {
+        if (distinctHusbands[i].id === item.m)
+            newspouse = false;
+    }
+    if (newspouse === true) {
+        distinctHusbands.push(item);
+    }
+}
+//with a list of distinct husbands then you can build a list of wives to determine how wide the connection should be...
+var testvar2 = [];
+distinctHusbands.forEach(createSpouseLine);
+function createSpouseLine(item, index) {
+    var left = 999999;
+    var right = 0;
+    var ycoor = 0;
+    for (var i = 0; i < union.length; i++) {
+        if (union[i].m === item.m) {
+            for (var w = 0; w < female.length; w++) {
+                if (female[w].id === union[i].f) {
+                    if (female[w].x > right)
+                        right = female[w].x;
+                    ycoor = female[w].y;
+                }
+            }
+        }
+    }
+    for (var m = 0; m < male.length; m++) {
+        if (male[m].id === item.m) {
+            left = male[m].x + 10;
+        }
+    }
+    testvar2.push({ x1: left, y1: ycoor + 50, x2: right, y2: ycoor + 50 });
+}
+testvar2.forEach(printme);
 //create another union like object to create a join across all children of the same mother.
 //horizontal line from the mid of the far left to the mid of far right... n pixals above the x
 var childunion = [{ mother: 11, child: 3, union: "Leshan Children" },
@@ -126,7 +164,7 @@ function createHorizontal(item, index) {
             for (var m = 0; m < male.length; m++) {
                 if (male[m].id === childunion[i].child) {
                     if (male[m].x < left)
-                        left = male[m].x;
+                        left = male[m].x + 10;
                     if (male[m].x > right)
                         right = male[m].x;
                 }
@@ -143,11 +181,9 @@ function createHorizontal(item, index) {
     }
     horizontals.push({ x1: left, y1: item.y + 60, x2: right, y2: item.y + 60, f: femaleColor, name: item.name });
 }
-//testvar.forEach(printme);
-//
-//function printme(item,index) {
-//   console.log(item.name)
-//}
+function printme(item, index) {
+    console.log(item);
+}
 //TODO: How can these lines be calculated instead of manual???
 //Horizontal Lines
 //horizontal line from the mid of the far left to the mid of far right... n pixals above the x
@@ -268,12 +304,12 @@ svg.selectAll("verticals")
 //Create horizontal spouse line
 //TODO: need to try something different here so that we connect the left most spouse to the right most spouse...
 svg.selectAll("horizontals")
-    .data(testvar)
+    .data(testvar2)
     .enter().append("line")
-    .attr("x1", function (d) { return d.G === "M" ? d.x + (rectWidth / 2) : d.x; })
-    .attr("y1", function (d) { return d.G === "M" ? d.y + rectHeight + namefontsize + rectHeight : d.y + 16 + namefontsize + rectHeight; })
-    .attr("x2", function (d) { return d.G === "M" ? d.x + (rectWidth / 2) + 100 : d.x - 100; })
-    .attr("y2", function (d) { return d.G === "M" ? d.y + rectHeight + namefontsize + rectHeight : d.y + 16 + namefontsize + rectHeight; })
+    .attr("x1", function (d) { return d.x1; })
+    .attr("y1", function (d) { return d.y1; })
+    .attr("x2", function (d) { return d.x2; })
+    .attr("y2", function (d) { return d.y2; })
     .attr("stroke-width", 1)
     .style("fill-opacity", 1)
     .attr("stroke", "green");
