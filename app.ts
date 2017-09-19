@@ -161,6 +161,7 @@ var childunion = [{mother:11,child:3, union: "Leshan Children"}
 ]
 
 var horizontals = [];
+var verticals = [];
 var mothers = [];
 //both y needs to be slightly above the children
 //X needs to be farthest left and farthest right
@@ -217,8 +218,9 @@ function createHorizontal(item,index) {
                 }
         }
         horizontals.push({x1:left,y1:item.y+60,x2:right,y2:item.y+60, f: femaleColor, name:item.name})
+        verticals.push({x1:right-25,y1:item.y+30,x2:right-25,y2:item.y+60, f: "lightblue", name:item.name});
 }
-
+//verticals { x1: 450, y1: 375, x2: 450, y2: 400, f: "lightblue", name: "Connect Leshan Children"}
 
 
 function printme(item,index) {
@@ -237,7 +239,7 @@ function printme(item,index) {
 //var verticals = [     { x1: 250, y1: 225, x2: 250, y2: 325, f: "lightblue", name: "Varenchibel IV Origin" }
 //     , { x1: 983, y1: 375, x2: 983, y2: 450, f: "lightblue", name: "Connect Maia"}]
 
-     var verticals = [
+/*     var verticals = [
     { x1: 450, y1: 375, x2: 450, y2: 400, f: "lightblue", name: "Connect Leshan Children"}
 
     , { x1: 725, y1: 375, x2: 725, y2: 400, f: "lightblue", name: "Connect Pazhiro Children"}
@@ -245,7 +247,7 @@ function printme(item,index) {
     
 
     , { x1: 350, y1: 505, x2: 350, y2: 520, f: "lightblue", name: "Connect Shevean Children"}
-];
+];*/
 
     var verticalsChildren = [
  { x1: 250, y1: 400, x2: 250, y2: 450, f: lineColor, name: "Connect Nemolis"}
