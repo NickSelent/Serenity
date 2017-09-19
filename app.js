@@ -188,18 +188,20 @@ function printme(item, index) {
 //Horizontal Lines
 //horizontal line from the mid of the far left to the mid of far right... n pixals above the x
 //var horizontals = [ { x1: 900, y1: 250, x2: 1400, y2: 250, f: lineColor, union: "Great Avar Children" }];
-//Vertical Lines
+//Vertical Lines for single children...
+//var verticals = [     { x1: 250, y1: 225, x2: 250, y2: 325, f: "lightblue", name: "Varenchibel IV Origin" }
+//     , { x1: 983, y1: 375, x2: 983, y2: 450, f: "lightblue", name: "Connect Maia"}]
 var verticals = [
-    { x1: 250, y1: 225, x2: 250, y2: 325, f: lineColor, name: "Varenchibel IV Origin" },
-    { x1: 450, y1: 375, x2: 450, y2: 400, f: lineColor, name: "Connect Leshan Children" },
+    { x1: 450, y1: 375, x2: 450, y2: 400, f: "lightblue", name: "Connect Leshan Children" },
+    { x1: 725, y1: 375, x2: 725, y2: 400, f: "lightblue", name: "Connect Pazhiro Children" },
+    { x1: 350, y1: 505, x2: 350, y2: 520, f: "lightblue", name: "Connect Shevean Children" }
+];
+var verticalsChildren = [
     { x1: 250, y1: 400, x2: 250, y2: 450, f: lineColor, name: "Connect Nemolis" },
     { x1: 500, y1: 400, x2: 500, y2: 450, f: lineColor, name: "Connect Nemrian" },
-    { x1: 725, y1: 375, x2: 725, y2: 400, f: lineColor, name: "Connect Pazhiro Children" },
     { x1: 650, y1: 400, x2: 650, y2: 450, f: lineColor, name: "Connect Nazhira" },
     { x1: 775, y1: 400, x2: 775, y2: 450, f: lineColor, name: "Connect Ciris" },
     { x1: 900, y1: 400, x2: 900, y2: 450, f: lineColor, name: "Connect Vedero" },
-    { x1: 983, y1: 375, x2: 983, y2: 450, f: lineColor, name: "Connect Maia" },
-    { x1: 350, y1: 505, x2: 350, y2: 520, f: lineColor, name: "Connect Shevean Children" },
     { x1: 250, y1: 520, x2: 250, y2: 540, f: lineColor, name: "Connect Idra" },
     { x1: 375, y1: 520, x2: 375, y2: 540, f: lineColor, name: "Connect Mirean" },
     { x1: 500, y1: 520, x2: 500, y2: 540, f: lineColor, name: "Connect Ino" },
@@ -281,6 +283,16 @@ svg.selectAll("horizontals")
 //All Vertical Lines
 svg.selectAll("verticals")
     .data(verticals)
+    .enter().append("line")
+    .attr("x1", function (d) { return d.x1; })
+    .attr("y1", function (d) { return d.y1; })
+    .attr("x2", function (d) { return d.x2; })
+    .attr("y2", function (d) { return d.y2; })
+    .attr("stroke-width", 1)
+    .style("fill-opacity", 0.5)
+    .attr("stroke", function (d) { return d.f; });
+svg.selectAll("verticals")
+    .data(verticalsChildren)
     .enter().append("line")
     .attr("x1", function (d) { return d.x1; })
     .attr("y1", function (d) { return d.y1; })
