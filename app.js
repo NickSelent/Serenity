@@ -134,6 +134,7 @@ var childunion = [{ mother: 11, child: 3, union: "Leshan Children" },
 ];
 var horizontals = [];
 var verticals = [];
+var verticalsChildren = [];
 var mothers = [];
 //both y needs to be slightly above the children
 //X needs to be farthest left and farthest right
@@ -168,6 +169,7 @@ function createHorizontal(item, index) {
                         left = male[m].x + 10;
                     if (male[m].x > right)
                         right = male[m].x;
+                    verticalsChildren.push({ x1: male[m].x + 13, y1: item.y + 60, x2: male[m].x + 13, y2: male[m].y, f: "purple", name: item.name });
                 }
             }
             for (var w = 0; w < female.length; w++) {
@@ -176,12 +178,13 @@ function createHorizontal(item, index) {
                         left = female[w].x;
                     if (female[w].x > right)
                         right = female[w].x;
+                    verticalsChildren.push({ x1: female[w].x, y1: item.y + 60, x2: female[w].x, y2: female[w].y - 13, f: "purple", name: item.name });
                 }
             }
         }
     }
-    horizontals.push({ x1: left, y1: item.y + 60, x2: right, y2: item.y + 60, f: femaleColor, name: item.name });
-    verticals.push({ x1: right - 25, y1: item.y + 30, x2: right - 25, y2: item.y + 60, f: "lightblue", name: item.name });
+    horizontals.push({ x1: left, y1: item.y + 60, x2: right, y2: item.y + 60, f: "gold", name: item.name });
+    verticals.push({ x1: left + 60, y1: item.y + 50, x2: left + 60, y2: item.y + 60, f: "black", name: item.name });
 }
 //verticals { x1: 450, y1: 375, x2: 450, y2: 400, f: "lightblue", name: "Connect Leshan Children"}
 function printme(item, index) {
@@ -202,23 +205,28 @@ function printme(item, index) {
     
 
     , { x1: 350, y1: 505, x2: 350, y2: 520, f: "lightblue", name: "Connect Shevean Children"}
-];*/
-var verticalsChildren = [
-    { x1: 250, y1: 400, x2: 250, y2: 450, f: lineColor, name: "Connect Nemolis" },
-    { x1: 500, y1: 400, x2: 500, y2: 450, f: lineColor, name: "Connect Nemrian" },
-    { x1: 650, y1: 400, x2: 650, y2: 450, f: lineColor, name: "Connect Nazhira" },
-    { x1: 775, y1: 400, x2: 775, y2: 450, f: lineColor, name: "Connect Ciris" },
-    { x1: 900, y1: 400, x2: 900, y2: 450, f: lineColor, name: "Connect Vedero" },
-    { x1: 250, y1: 520, x2: 250, y2: 540, f: lineColor, name: "Connect Idra" },
-    { x1: 375, y1: 520, x2: 375, y2: 540, f: lineColor, name: "Connect Mirean" },
-    { x1: 500, y1: 520, x2: 500, y2: 540, f: lineColor, name: "Connect Ino" },
-    { x1: 1000, y1: 225, x2: 1000, y2: 325, f: lineColor, name: "Chenelo Origin" },
-    { x1: 900, y1: 250, x2: 900, y2: 265, f: lineColor, name: "Thever Origin" },
-    { x1: 1100, y1: 250, x2: 1100, y2: 265, f: lineColor, name: "Holitho Origin" },
-    { x1: 1200, y1: 250, x2: 1200, y2: 265, f: lineColor, name: "Shaleän Origin" },
-    { x1: 1300, y1: 250, x2: 1300, y2: 265, f: lineColor, name: "Nadeian Origin" },
-    { x1: 1400, y1: 250, x2: 1400, y2: 265, f: lineColor, name: "Ursu Origin" }
 ];
+
+    var verticalsChildren = [
+ { x1: 250, y1: 400, x2: 250, y2: 450, f: lineColor, name: "Connect Nemolis"}
+        , { x1: 500, y1: 400, x2: 500, y2: 450, f: lineColor, name: "Connect Nemrian"}
+
+        , { x1: 650, y1: 400, x2: 650, y2: 450, f: lineColor, name: "Connect Nazhira"}
+        , { x1: 775, y1: 400, x2: 775, y2: 450, f: lineColor, name: "Connect Ciris"}
+        , { x1: 900, y1: 400, x2: 900, y2: 450, f: lineColor, name: "Connect Vedero"}
+        
+    
+ 
+        , { x1: 250, y1: 520, x2: 250, y2: 540, f: lineColor, name: "Connect Idra"}
+        , { x1: 375, y1: 520, x2: 375, y2: 540, f: lineColor, name: "Connect Mirean"}
+        , { x1: 500, y1: 520, x2: 500, y2: 540, f: lineColor, name: "Connect Ino"}
+    
+        , { x1: 1000, y1: 225, x2: 1000, y2: 325, f: lineColor, name: "Chenelo Origin" }
+        , { x1: 900, y1: 250, x2: 900, y2: 265, f: lineColor, name: "Thever Origin" }
+        , { x1: 1100, y1: 250, x2: 1100, y2: 265, f: lineColor, name: "Holitho Origin"}
+        , { x1: 1200, y1: 250, x2: 1200, y2: 265, f: lineColor, name: "Shaleän Origin"}
+        , { x1: 1300, y1: 250, x2: 1300, y2: 265, f: lineColor, name: "Nadeian Origin"}
+        , { x1: 1400, y1: 250, x2: 1400, y2: 265, f: lineColor, name: "Ursu Origin"}];*/
 //svg.selectAll("rect").remove(); //remove can be used if you want to redraw these after an interaction...
 //Create Rectangles for each person
 svg.selectAll("rect")
