@@ -305,9 +305,9 @@ svg.selectAll("verticals")
     .attr("y1", function (d) { return d.G === "M" ? d.y + rectHeight + namefontsize + 4 : d.y + (rectHeight / 2) + namefontsize + 6; })
     .attr("x2", function (d) { return d.G === "M" ? d.x + (rectWidth / 2) : d.x; })
     .attr("y2", function (d) { return d.G === "M" ? d.y + rectHeight + namefontsize + rectHeight : d.y + 16 + namefontsize + rectHeight; })
-    .attr("stroke-width", 1)
-    .style("fill-opacity", 1)
-    .attr("stroke", "green");
+    .attr("stroke-width", .5)
+    .style("fill-opacity", .5)
+    .attr("stroke", lineColor);
 //Create horizontal spouse line
 //TODO: need to try something different here so that we connect the left most spouse to the right most spouse...
 svg.selectAll("horizontals")
@@ -317,7 +317,7 @@ svg.selectAll("horizontals")
     .attr("y1", function (d) { return d.y1; })
     .attr("x2", function (d) { return d.x2; })
     .attr("y2", function (d) { return d.y2; })
-    .attr("stroke-width", 1)
-    .style("fill-opacity", 1)
-    .attr("stroke", "green");
+    .attr("stroke-width", .5)
+    .style("fill-opacity", .5)
+    .attr("stroke", lineColor);
 //# sourceMappingURL=app.js.map
