@@ -194,6 +194,7 @@ for (var i=0; i < female.length; i++) {
 function createHorizontal(item,index) {
     var left = 999999;
     var right = 0;
+    var mommy = 0 ;
     for(var i=0; i < childunion.length; i++)
         {
             if(childunion[i].mother === item.id)
@@ -224,7 +225,14 @@ function createHorizontal(item,index) {
         }
         horizontals.push({x1:left,y1:item.y+60,x2:right,y2:item.y+60, f: lineColor, name:item.name});
         //TODO: needs to be a formula either mother or right most child whichever is less
-        verticals.push({x1:left+60,y1:item.y+50,x2:left+60,y2:item.y+60, f: lineColor, name:item.name});
+        //verticals.push({x1:left+60,y1:item.y+50,x2:left+60,y2:item.y+60, f: "GREEN", name:item.name});
+        if(right < item.x)
+            mommy = right;
+
+            if(item.x < right)
+            mommy = item.x;
+
+        verticals.push({x1:mommy-10,y1:item.y+50,x2:mommy-10,y2:item.y+60, f: "GREEN", name:item.name});
         
 }
 //verticals { x1: 450, y1: 375, x2: 450, y2: 400, f: "lightblue", name: "Connect Leshan Children"}
