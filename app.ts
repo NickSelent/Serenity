@@ -232,7 +232,7 @@ function createHorizontal(item,index) {
             if(item.x < right)
             mommy = item.x;
 
-        verticals.push({x1:mommy-10,y1:item.y+50,x2:mommy-10,y2:item.y+60, f: "GREEN", name:item.name});
+        verticals.push({x1:mommy-10,y1:item.y+50,x2:mommy-10,y2:item.y+60, f: lineColor, name:item.name});
         
 }
 //verticals { x1: 450, y1: 375, x2: 450, y2: 400, f: "lightblue", name: "Connect Leshan Children"}
